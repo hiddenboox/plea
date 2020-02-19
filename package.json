@@ -1,0 +1,51 @@
+{
+  "name": "plea",
+  "version": "0.0.0-development",
+  "description": "The most simple request library for Node.JS",
+  "main": "dist/plea.cjs.js",
+  "module": "dist/plea.esm.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --exit",
+    "test:watch": "./node_modules/.bin/mocha --watch --watch-extensions js \"test/**/*.js\"",
+    "build": "./node_modules/.bin/rollup -c",
+    "dev": "./node_modules/.bin/rollup -c -w",
+    "semantic-release": "./node_modules/.bin/semantic-release"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hiddenboox/plea.git"
+  },
+  "keywords": [
+    "request",
+    "api",
+    "https"
+  ],
+  "author": "Sebastian Sobociński <sebastian@soft-bind.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hiddenboox/plea/issues"
+  },
+  "homepage": "https://github.com/hiddenboox/plea#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/register": "^7.8.3",
+    "chai": "^4.2.0",
+    "cz-conventional-changelog": "^3.1.0",
+    "mocha": "^7.0.1",
+    "nock": "^12.0.0",
+    "prettier": "1.19.1",
+    "rollup": "^1.31.1",
+    "semantic-release": "^17.0.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
