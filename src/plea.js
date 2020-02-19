@@ -46,3 +46,5 @@ export const put = (url, options = {}) =>
   request({ ...options, url, method: HttpVerb.PUT })
 export const patch = (url, options = {}) =>
   request({ ...options, url, method: HttpVerb.PATCH })
+export const _delete = (url, options = {}) =>
+  request({ ...options, url, method: HttpVerb.DELETE })

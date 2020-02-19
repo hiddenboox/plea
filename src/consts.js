@@ -3,4 +3,5 @@ export const HttpVerb = {
   GET: 'GET',
   PUT: 'PUT',
   PATCH: 'PATCH',
+  DELETE: 'DELETE',
 }
