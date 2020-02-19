@@ -6,16 +6,16 @@ import assert from 'assert'
 import { HttpVerb } from './consts'
 
 export const request = (
-  { url, json, params, body, ...rest } = { method: HttpVerb.GET, json: true }
+  { url, json, params, body, ...rest } = { method: HttpVerb.GET, json: true },
 ) => {
   assert.ok(url, 'url should not be empty')
 
-  const { pathname, search, host } = new URL(
-    `${url}${params ? '?' + querystring.stringify(params) : ''}`
+  const { pathname, search, host, port } = new URL(
+    `${url}${params ? '?' + querystring.stringify(params) : ''}`,
   )
   return new Promise((resolve, reject) => {
     const path = `${pathname}${search}`
-    const req = https.request({ host, path, ...rest }, res => {
+    const req = https.request({ host, path, port, ...rest }, res => {
       let data = ''
       res.setEncoding('utf8')
       res.on('data', chunk => {
