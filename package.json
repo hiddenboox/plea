@@ -1,6 +1,6 @@
 {
   "name": "plea",
-  "version": "1.3.4",
+  "version": "1.3.6",
   "description": "The most simple request library for Node.JS",
   "main": "dist/plea.cjs.js",
   "module": "dist/plea.esm.js",
