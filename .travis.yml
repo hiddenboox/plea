@@ -19,6 +19,8 @@ jobs:
           branches:
             only:
               - master
+              # a new tag is pushed. Version tags should be of the form: v0.1.0
+              - /^v\d+\.\d+\.\d+.*$/
         provider: script
         skip_cleanup: true
         script:
