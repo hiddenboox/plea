@@ -15,6 +15,7 @@ jobs:
       script: npm run build
       deploy:
         on:
+          tags: true
           branches:
             only:
               - master
