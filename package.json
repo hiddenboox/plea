@@ -1,6 +1,6 @@
 {
   "name": "plea",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "The most simple request library for Node.JS",
   "main": "dist/plea.cjs.js",
   "module": "dist/plea.esm.js",
@@ -10,6 +10,9 @@
     "build": "./node_modules/.bin/rollup -c",
     "dev": "./node_modules/.bin/rollup -c -w",
     "semantic-release": "./node_modules/.bin/semantic-release"
+  },
+  "engines": {
+    "node": ">=8"
   },
   "files": [
     "dist"
@@ -31,13 +34,17 @@
   "homepage": "https://github.com/hiddenboox/plea#readme",
   "dependencies": {},
   "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
     "@babel/register": "^7.8.3",
     "chai": "^4.2.0",
     "cz-conventional-changelog": "^3.1.0",
+    "husky": "^4.2.3",
     "mocha": "^7.0.1",
     "nock": "^12.0.0",
     "prettier": "1.19.1",
     "rollup": "^1.31.1",
+    "rollup-plugin-babel": "^4.3.3",
     "semantic-release": "^17.0.4"
   },
   "publishConfig": {
@@ -46,6 +53,11 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test"
     }
   }
 }
