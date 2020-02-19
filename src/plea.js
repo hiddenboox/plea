@@ -44,3 +44,5 @@ export const post = (url, options = {}) =>
   request({ ...options, url, method: HttpVerb.POST })
 export const put = (url, options = {}) =>
   request({ ...options, url, method: HttpVerb.PUT })
+export const patch = (url, options = {}) =>
+  request({ ...options, url, method: HttpVerb.PATCH })
