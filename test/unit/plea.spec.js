@@ -18,7 +18,7 @@ describe('request', () => {
           throw err
         },
         assert.AssertionError,
-        'url should not be empty'
+        'url should not be empty',
       )
     }
   })
@@ -28,7 +28,7 @@ describe('request', () => {
 
     const response = await post(
       `https://localhost/pl/standard/user/oauth/authorize`,
-      { json: true }
+      { json: true },
     )
 
     response.should.have.property('access_token')
@@ -41,7 +41,7 @@ describe('request', () => {
     mockAuthorize()
 
     const response = await post(
-      `https://localhost/pl/standard/user/oauth/authorize`
+      `https://localhost/pl/standard/user/oauth/authorize`,
     )
 
     response.should.be.a('string')
@@ -58,7 +58,7 @@ describe('request', () => {
           throw err
         },
         Error,
-        'adddad'
+        'adddad',
       )
     }
   })
