@@ -20,11 +20,19 @@ export function prepareRequestOpt({ url: _url, json, params, body, ...rest }) {
 
   const path = [pathname, search].filter(Boolean).join('')
   const isHttpsProtocol = protocol.startsWith('https')
+
+  let headers = {}
+
+  if (json) {
+    headers['Content-Type'] = 'application/json'
+  }
+
   return {
     hostname,
     path,
     port: port ? parseInt(port, 10) : isHttpsProtocol ? 443 : 80,
     protocol,
+    headers,
     ...rest,
   }
 }
