@@ -18,7 +18,10 @@ export const request = (
         data += chunk
       })
       res.on('end', () => {
-        resolve(json ? JSON.parse(data) : data)
+        resolve({
+          data: json ? JSON.parse(data) : data,
+          status: res.statusCode,
+        })
       })
     })
 
