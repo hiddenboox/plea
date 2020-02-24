@@ -4,7 +4,7 @@ describe('prepareRequestOpt', () => {
   it('should return correct opt object for url with https protocol', () => {
     const url = 'https://localhost:4000/stores/store/1'
     const opt = prepareRequestOpt({ url })
-    opt.should.have.property('protocol').to.equals('http:')
+    opt.should.have.property('protocol').to.equals('https:')
     opt.should.have.property('port').to.equals(4000)
     opt.should.have.property('path').to.equals('/stores/store/1')
     opt.should.have.property('hostname').to.equals('localhost')
@@ -44,8 +44,8 @@ describe('prepareRequestOpt', () => {
     const url = 'https://localhost'
     const opt = prepareRequestOpt({ url })
 
-    opt.should.have.property('protocol').to.equals('http:')
-    opt.should.have.property('port').to.equals(80)
+    opt.should.have.property('protocol').to.equals('https:')
+    opt.should.have.property('port').to.equals(443)
     opt.should.have.property('path').to.equals('/')
     opt.should.have.property('hostname').to.equals('localhost')
   })

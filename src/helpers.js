@@ -11,14 +11,15 @@ export function prepareRequestOpt({ url: _url, json, params, body, ...rest }) {
     search = url.search
     port = url.port
     hostname = url.hostname
+    protocol = url.protocol
   } catch (err) {
     hostname = _url
+    protocol = 'http:'
     port = 80
   }
 
-  protocol = 'http:'
-
   const path = [pathname, search].filter(Boolean).join('')
+  const isHttpsProtocol = protocol.startsWith('https')
 
   let headers = {}
 
@@ -29,7 +30,7 @@ export function prepareRequestOpt({ url: _url, json, params, body, ...rest }) {
   return {
     hostname,
     path,
-    port: port ? parseInt(port, 10) : 80,
+    port: port ? parseInt(port, 10) : isHttpsProtocol ? 443 : 80,
     protocol,
     headers,
     ...rest,

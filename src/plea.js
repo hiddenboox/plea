@@ -1,4 +1,4 @@
-import http from 'http'
+import https from 'https'
 import assert from 'assert'
 
 import { HttpVerb } from './consts'
@@ -11,7 +11,7 @@ export const request = (
 
   return new Promise((resolve, reject) => {
     const opt = prepareRequestOpt({ url, json, params, body, ...rest })
-    const req = http.request(opt, res => {
+    const req = https.request(opt, res => {
       let data = ''
       res.setEncoding('utf8')
       res.on('data', chunk => {

@@ -1,7 +1,7 @@
 import assert from 'assert'
 import nock from 'nock'
 import sinon from 'sinon'
-import http from 'http'
+import https from 'https'
 
 import { post, get } from '../../src'
 import { mockAuthorize, mockHttpStatus, mockOrder } from '../helpers/nock'
@@ -10,7 +10,7 @@ describe('request', () => {
   const sandbox = sinon.createSandbox()
 
   beforeEach(() => {
-    sandbox.spy(http, 'request')
+    sandbox.spy(https, 'request')
   })
 
   afterEach(() => {
@@ -36,7 +36,7 @@ describe('request', () => {
     mockAuthorize()
 
     const { data } = await post(
-      `http://localhost/pl/standard/user/oauth/authorize`,
+      `https://localhost/pl/standard/user/oauth/authorize`,
       {
         json: true,
       },
@@ -52,7 +52,7 @@ describe('request', () => {
     mockAuthorize()
 
     const { data } = await post(
-      `http://localhost/pl/standard/user/oauth/authorize`,
+      `https://localhost/pl/standard/user/oauth/authorize`,
     )
 
     data.should.be.a('string')
@@ -62,7 +62,7 @@ describe('request', () => {
     mockHttpStatus(500)
 
     try {
-      await get('http://localhost/500')
+      await get('https://localhost/500')
     } catch (err) {
       should.throw(
         () => {
@@ -77,7 +77,7 @@ describe('request', () => {
   it('should respons status of request', async () => {
     mockHttpStatus(200)
 
-    const { status } = await get('http://localhost/200')
+    const { status } = await get('https://localhost/200')
     status.should.be.a('number').and.equal(200)
   })
 
@@ -85,7 +85,7 @@ describe('request', () => {
     mockAuthorize()
 
     const { data } = await post(
-      `http://localhost/pl/standard/user/oauth/authorize`,
+      `https://localhost/pl/standard/user/oauth/authorize`,
     )
 
     data.should.equals(
@@ -96,13 +96,13 @@ describe('request', () => {
   it("should add header content-type: 'application/json' with { json: true }", async () => {
     mockOrder()
 
-    const { status, data } = await post('http://localhost/api/v2_1/orders', {
+    const { status, data } = await post('https://localhost/api/v2_1/orders', {
       body: {
         parse: 'me',
       },
       json: true,
     })
-    const { headers } = http.request.args[0][0]
+    const { headers } = https.request.args[0][0]
 
     headers.should.have.property('Content-Type').and.equals('application/json')
     status.should.be.a('number').and.equals(200)
