@@ -1,9 +1,8 @@
 import nock from 'nock'
 
 export const mockAuthorize = () =>
-  nock('https://localhost')
+  nock('http://localhost')
     .post('/pl/standard/user/oauth/authorize')
-    .query(() => true)
     .reply(
       200,
       JSON.stringify({
@@ -15,9 +14,8 @@ export const mockAuthorize = () =>
     )
 
 export const mockOrder = () =>
-  nock('https://localhost')
+  nock('http://localhost')
     .post('/api/v2_1/orders')
-    .query(() => true)
     .reply(
       200,
       JSON.stringify({
@@ -31,6 +29,6 @@ export const mockOrder = () =>
     )
 
 export const mockHttpStatus = status =>
-  nock('https://localhost')
+  nock('http://localhost')
     .get(`/${status}`)
     .reply(status, `Response ${status}`)
