@@ -1,4 +1,4 @@
-import https from 'https'
+import { https } from 'follow-redirects'
 import assert from 'assert'
 
 import { HttpVerb } from './consts'
