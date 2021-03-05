@@ -1,7 +1,7 @@
 import { URL } from 'url'
 import querystring from 'querystring'
 
-export function prepareRequestOpt({ url: _url, json, params, body, ...rest }) {
+export function prepareRequestOpt({ url: _url, json, params, body, headers, ...rest }) {
   let pathname, search, port, hostname, protocol
   try {
     const url = new URL(
@@ -21,10 +21,12 @@ export function prepareRequestOpt({ url: _url, json, params, body, ...rest }) {
   const path = [pathname, search].filter(Boolean).join('')
   const isHttpsProtocol = protocol.startsWith('https')
 
-  let headers = {}
+  const defaultHeaders = {
+    ...headers
+  }
 
-  if (json) {
-    headers['Content-Type'] = 'application/json'
+  if (json && !defaultHeaders['Content-Type']) {
+    defaultHeaders['Content-Type'] = 'application/json'
   }
 
   return {
@@ -32,7 +34,8 @@ export function prepareRequestOpt({ url: _url, json, params, body, ...rest }) {
     path,
     port: port ? parseInt(port, 10) : isHttpsProtocol ? 443 : 80,
     protocol,
-    headers,
+    httpProtocol: protocol.slice(0, protocol.length - 1),
+    headers: defaultHeaders,
     ...rest,
   }
 }
