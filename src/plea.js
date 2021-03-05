@@ -1,5 +1,5 @@
-import { https } from 'follow-redirects'
 import assert from 'assert'
+import followRedirects from 'follow-redirects'
 
 import { HttpVerb } from './consts'
 import { prepareRequestOpt } from './helpers'
@@ -10,8 +10,8 @@ export const request = (
   assert.ok(url, 'url should not be empty')
 
   return new Promise((resolve, reject) => {
-    const opt = prepareRequestOpt({ url, json, params, body, ...rest })
-    const req = https.request(opt, res => {
+    const { httpProtocol, ...opt } = prepareRequestOpt({ url, json, params, body, ...rest })
+    const req = followRedirects[httpProtocol].request(opt, res => {
       let data = ''
       res.setEncoding('utf8')
       res.on('data', chunk => {
